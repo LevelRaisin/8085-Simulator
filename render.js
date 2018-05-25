@@ -1,0 +1,1 @@
+let {remote} = require('electron');

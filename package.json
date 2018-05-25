@@ -1,0 +1,8 @@
+{
+  "name": "8085-simulator",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "electron": "^2.0.2"
+  }
+}
