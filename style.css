@@ -1,3 +1,49 @@
-#project_explorer {
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
 
+#menu {
+    width: 100%;
+    height: 24px;
+    background-color: lightcyan; /*temporary*/
+}
+
+#v_sep {
+    width: 100%;
+    height: 4px;
+    background-color: lightcoral; /*temporary*/
+}
+
+#container {
+    width: 100%;
+    flex: 1;
+}
+
+#project_explorer {
+    position: absolute;
+    height: 100%;
+    background-color: lightskyblue; /*temporary*/
+    width: calc(25% - 2px);
+}
+
+#editor {
+    position: absolute;
+    height: 100%;
+    background-color: lightblue; /*temporary*/
+    width: calc(75% - 2px);
+    right: 0;
+}
+
+#h_sep {
+    left: calc(25% - 2px);
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    background-color: lightcoral; /*temporary*/
+    cursor: ew-resize;
 }
