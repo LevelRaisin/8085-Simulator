@@ -25,6 +25,9 @@ function createWindow() {
 			submenu: [
 				{
 					label: 'New',
+					click() {
+						console.log('new clicked');
+					}/*
 					submenu: [
 						{
 							label: 'type 1',
@@ -37,7 +40,7 @@ function createWindow() {
 								console.log('new type 2');
 							}
 						}
-					]
+					]*/
 				},
 				{type: 'separator'},
 				{

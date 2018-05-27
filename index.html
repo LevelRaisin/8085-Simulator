@@ -4,14 +4,27 @@
 		<meta charset="UTF-8">
 		<title>8085 Simulator</title>
 		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	</head>
 	<body>
-		<div id="menu"></div>
+		<div id="menu">
+			<i class="material-icons">note_add</i>
+			<i class="material-icons">folder</i>
+			<i class="material-icons">save</i>
+			|
+			<i class="material-icons">undo</i>
+			<i class="material-icons">redo</i>
+			|
+			<i class="material-icons">play_arrow</i>
+		</div>
 		<div id="v_sep"></div>
 		<div id="container">
 			<div id="project_explorer"></div>
 			<div id="h_sep"></div>
-			<div id="editor"></div>
+			<div id="editor">
+				<div id="text_area"></div>
+			</div>
 		</div>
 		<!--<script>if (typeof module === 'object') {
 			window.module = module;
