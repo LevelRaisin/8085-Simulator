@@ -26,14 +26,15 @@ html, body {
 
 #project_explorer {
     position: absolute;
-    height: 100%;
+    height: calc(100vh - 28px);
     background-color: lightskyblue; /*temporary*/
     width: calc(25% - 2px);
 }
 
 #editor {
     position: absolute;
-    height: 100%;
+    /*height: calc(100% - 28px);*/
+    height: calc(100vh - 28px);
     background-color: lightblue; /*temporary*/
     width: calc(75% - 2px);
     right: 0;
@@ -43,7 +44,8 @@ html, body {
     left: calc(25% - 2px);
     position: absolute;
     width: 4px;
-    height: 100%;
+    /*height: calc(100% - 28px);*/
+    height: calc(100vh - 28px);
     background-color: lightcoral; /*temporary*/
     cursor: ew-resize;
 }

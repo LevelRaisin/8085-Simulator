@@ -7,6 +7,7 @@ $(function() {
 	const editor = $('#editor');
 	const separator = $('#h_sep');
 	const container = $('#container');
+	project_explorer.height(window.innerHeight - 28);
 	const A = project_explorer.width(),
 		B = editor.width(),
 		Z = separator.width(),
