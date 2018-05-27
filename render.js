@@ -1,18 +1,20 @@
-let $ = require('jquery');
+//let $ = jQuery = require('jquery');
 let {remote} = require('electron');
+//require('jquery-ui-dist/jquery-ui');
 
 $(function() {
 	const project_explorer = $('#project_explorer');
 	const editor = $('#editor');
-	const separator = $('#v_sep');
+	const separator = $('#h_sep');
 	const container = $('#container');
-	var A = parseInt(project_explorer.width(), 10),
-		B = parseInt(editor.width(), 10),
-		Z = parseInt(separator.width(), 10),
-		minw = parseInt((A + B + Z) * 10 / 100, 10),
+	const A = project_explorer.width(),
+		B = editor.width(),
+		Z = separator.width(),
+		minw = (A + B + Z) * 10 / 100,
 		offset = container.offset(),
 		splitter = function(event, ui) {
-			const aw = parseInt(ui.position.left), bw = A + B - aw;
+			console.log('called');
+			const aw = ui.position.left, bw = A + B - aw;
 			project_explorer.css({width: aw});
 			editor.css({width: bw});
 		};

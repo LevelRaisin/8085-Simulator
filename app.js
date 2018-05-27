@@ -17,6 +17,8 @@ function createWindow() {
 		win = null
 	});
 
+	win.webContents.openDevTools();
+
 	const template = [
 		{
 			label: 'File',
