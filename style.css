@@ -1,3 +1,18 @@
+/* Variables */
+:root{
+    --seperator-bar-colour: lightcoral;
+    --editor-colour: lightblue;
+    --file-tree: lightskyblue;
+    --menu: lightcyan;
+
+    /*
+        --seperator-bar-colour: #2b2c3a;
+    --editor-colour: #e2e2e2;
+    --file-tree: #e2e2e2;
+    --menu: #e2e2e2;
+    */
+}
+
 html, body {
     width: 100%;
     height: 100%;
@@ -10,13 +25,13 @@ html, body {
 #menu {
     width: 100%;
     height: 24px;
-    background-color: lightcyan; /*temporary*/
+    background-color: var(--menu); 
 }
 
 #v_sep {
     width: 100%;
     height: 4px;
-    background-color: lightcoral; /*temporary*/
+    background-color: var(--seperator-bar-colour); 
 }
 
 #container {
@@ -27,7 +42,7 @@ html, body {
 #project_explorer {
     position: absolute;
     height: calc(100vh - 28px);
-    background-color: lightskyblue; /*temporary*/
+    background-color: var(--file-tree);
     width: calc(25% - 2px);
 }
 
@@ -35,7 +50,7 @@ html, body {
     position: absolute;
     /*height: calc(100% - 28px);*/
     height: calc(100vh - 28px);
-    background-color: lightblue; /*temporary*/
+    background-color: var(--editor-colour);
     width: calc(75% - 2px);
     right: 0;
 }
@@ -46,6 +61,30 @@ html, body {
     width: 4px;
     /*height: calc(100% - 28px);*/
     height: calc(100vh - 28px);
-    background-color: lightcoral; /*temporary*/
+    background-color: var(--seperator-bar-colour);
     cursor: ew-resize;
+}
+
+/* Menu bar */
+.material-icons{
+    padding-left: 3px;
+    padding-right:3px;
+
+    transition-duration:.2s;
+}
+
+.material-icons:hover{
+    box-shadow:0px 0px 10px rgba(0,0,0,.2);
+    background-color: rgba(0,0,0,.1);
+
+    cursor: pointer;
+
+    transition-duration: .2s;
+}
+
+.material-icons:active{
+    box-shadow:0px 0px 20px rgba(0,0,0,.3);
+    background-color: rgba(0,0,0,.2);
+
+    transition-duration:.2s;
 }

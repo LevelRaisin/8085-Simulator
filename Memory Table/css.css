@@ -131,7 +131,7 @@ tr .active {
     font-weight: bold;
     transform: scale(.9, .9);
     animation: attention 5s infinite;
-    animation-delay: 1.2s;
+    animation-delay: 1s;
 }
 
 /* Animation to draw attention */
