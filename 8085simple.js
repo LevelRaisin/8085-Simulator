@@ -1,9 +1,9 @@
 CodeMirror.defineSimpleMode("8085", {
-	// The start state contains the rules that are intially used
 	start: [
-		// The regex matches the token, the token property contains the type
 		{regex: /push|PUSH|pop|POP|nop|NOP|hlt|HLT/, token: "keyword"},
 		{regex: /di|DI|ei|EI|rim|RIM|sim|SIM/, token: "error"},
+		{regex: /0x[a-f\d]+|[-+]?(?:\.\d+|\d+\.?\d*)(?:e[-+]?\d+)?/i, token: "number"},
+		{regex: /(?!\w)([A-F]|[a-f])(?!\w)/, token: "builtin"}
 	],
 	// The multi-line comment state.
 	comment: [

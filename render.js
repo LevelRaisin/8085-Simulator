@@ -2,17 +2,93 @@ let $ = jQuery = require('jquery');
 let {remote} = require('electron');
 //require('jquery-ui');
 require('jquery-ui-dist/jquery-ui');
-//require("codemirror/css/monokai.css");
 let CodeMirror = require('codemirror');
+//require("codemirror/css/monokai.css");
 require("codemirror/addon/edit/closebrackets");
 require("codemirror/addon/mode/simple");
-//let javascript = require("codemirror/mode/javascript/javascript.js");
+require("codemirror/addon/selection/active-line");
 require("./8085simple.js");
+
+let area;
+
+class byte {
+	constructor(sign, zero, d2, auxilary_carry, d4, parity, d6, carry) {
+		this.sign = sign;
+		this.zero = zero;
+		this.d2 = d2;
+		this.auxilary_carry = auxilary_carry;
+		this.d4 = d4;
+		this.parity = parity;
+		this.d6 = d6;
+		this.carry = carry;
+	}
+
+	and(other) {
+
+	}
+}
+
+class command {
+	constructor(code, fun) {
+		this.code = code;
+		this.fun = fun;
+	}
+}
+
+let registers;
+registers["a"] = byte(0,0,0,0,0,0,0,0);
+
+let commands;
+commands["cmp"] = command([0xb8, 0xbf], function(params) {
+
+});
+commands["cpi"] = command([0xfe], function(params) {
+
+});
+commands["ana"] = command([0xa0, 0xa7], function(params) {
+	registers["a"] = registers["a"]
+});
+commands["cmp"] = command([0xb8, 0xbf], function(params) {
+
+});
+commands["cmp"] = command([0xb8, 0xbf], function(params) {
+
+});
+commands["cmp"] = command([0xb8, 0xbf], function(params) {
+
+});
+commands["cmp"] = command([0xb8, 0xbf], function(params) {
+
+});
+commands["cmp"] = command([0xb8, 0xbf], function(params) {
+
+});
+commands["cmp"] = command([0xb8, 0xbf], function(params) {
+
+});
+commands["cmp"] = command([0xb8, 0xbf], function(params) {
+
+});
+
+
+function run() {
+	const lines = area.getValue().split("\n");
+	for (let i in lines) {
+		const cmds = lines[i];
+		const cmd = cmds[0].toLowerCase();
+		if (cmd === "hlt") break;
+		else if (cmd !== "nop") {
+			commands["cmd"].fun(cmds.slice(1));
+		}
+	}
+}
 
 $(function() {
 	const $project_explorer = $('#project_explorer');
 	const $editor = $('#editor');
 	const $separator = $('#h_sep');
+	const $run = $('#run');
+	$run.click(run);
 	const splitter = function(event, ui) {
 		ui.position.left = Math.max(window.innerWidth * .1, ui.position.left);
 		ui.position.left = Math.min(window.innerWidth * .9, ui.position.left);
@@ -25,7 +101,7 @@ $(function() {
 		drag: splitter
 	});
 
-	CodeMirror($('#text_area')[0], {
+	area = CodeMirror($('#text_area')[0], {
 		value: "push eax\npop eax",
 		lineNumbers: true,
 		styleActiveLine: true,
