@@ -10,15 +10,16 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 
-<body style="padding-top:45px;">
+<body>
+    <div style="cursor: move; padding-bottom:45px; z-index:5; box-shadow:0px 0px 10px rgba(0,0,0,.2); -webkit-app-region: drag; height:20px; width:100%; background-color: #424242;"></div>
     <div id="tableContainer">
-        <table class="mem-table"></table>
+        <table id="mem-table"></table>
     </div>
     <div id="tableContainer">
-        <table class="bin-table"></table>
+        <table id="bin-table"></table>
     </div>
-    <div class="roundButton" id="closeButton"><i class="material-icons">highlight_off</i>Close</div>
-
+    <div style="z-index:10; -webkit-app-region: no-drag;" class="roundButton" id="revealButton"><i class="material-icons">search</i>Reveal</div>
+    <div style="z-index:10; -webkit-app-region: no-drag;" class="roundButton" id="closeButton"><i class="material-icons">highlight_off</i>Close</div>
     <!--<script>if (typeof module === 'object') {
 			window.module = module;
 			module = undefined;
@@ -33,11 +34,11 @@
 
     <script>
         $(document).ready(function () {
-            memTable = new Table(".mem-table", [["Memory Locations", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"],["Test Data"]]);
-	binTable = new Table(".bin-table", [["Memory Locations", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"], ["Test Data"]]);
+            memTablePop = new Table("#mem-table", [["Memory Locations", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"], ["Test Data"]]);
+            binTablePop = new Table("#bin-table", [["Memory Locations", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"], ["Test Data"]]);
 
-	memTable.createTable();
-	binTable.createTable();
+            memTablePop.createTable();
+            binTablePop.createTable();
         });
 
         $('#closeButton').click(function () {

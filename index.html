@@ -31,10 +31,10 @@
 		<div style="display:none" id="tables">
 			<div class="innerTableContainer">
 				<div id="tableContainer">
-					<table class="mem-table"></table>
+					<table id="mem-table"></table>
 				</div>
 				<div id="tableContainer">
-					<table class="bin-table"></table>
+					<table id="bin-table"></table>
 				</div>
 				<div class="roundButton" id="revealButton"><i class="material-icons">search</i>Reveal</div>
 				<div class="roundButton" id="popoutButton"><i class="material-icons">picture_in_picture</i>Popout</div>
@@ -67,7 +67,12 @@
 		});
 
 		$("#revealButton").click(function(){
+			if($("#revealButton").html() == '<i class="material-icons">search</i>Reveal')
+				$("#revealButton").html('<i class="material-icons">search</i>Hide');
+			else
+				$("#revealButton").html('<i class="material-icons">search</i>Reveal');
 			memTable.highlightMemory();
+			binTable.highlightMemory();
 		});
 	</script>
 </body>

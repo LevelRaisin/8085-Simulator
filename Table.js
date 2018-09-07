@@ -48,12 +48,12 @@ function Table(tableName, tableData){
         var rowCount = 0;
 
         //Reset all rows to not active
-        $(this.tableName).find("tr").each(function () {
+        $(this.name).find("tr").each(function () {
             $(this).removeClass('active');
         });
 
         //Add active class to rows/items with memory != 0
-        $(this.tableName + "tr").find("td").each(function () {
+        $(this.name).find("td").each(function () {
             //Check if memory has a 1 and is of length 2 (to exclude line number)
             console.log(this);
             if (this.innerText.includes("1") && this.innerText.length == 2) {

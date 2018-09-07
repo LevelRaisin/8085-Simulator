@@ -228,7 +228,7 @@ tr:nth-child(odd) {
 
 /* Active row */
 
-tbody .active {
+table .active {
     background-color: rgba(10, 143, 10, .2) !important;
     transition-duration: .2s;
 }
