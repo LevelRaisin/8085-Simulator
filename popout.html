@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>8085 Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+</head>
+
+<body style="padding-top:45px;">
+    <div id="tableContainer">
+        <table class="mem-table"></table>
+    </div>
+    <div id="tableContainer">
+        <table class="bin-table"></table>
+    </div>
+    <div class="roundButton" id="closeButton"><i class="material-icons">highlight_off</i>Close</div>
+
+    <!--<script>if (typeof module === 'object') {
+			window.module = module;
+			module = undefined;
+		}</script>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>-->
+    <script type="text/javascript" src="./node_modules/codemirror/mode/javascript/javascript.js"></script>
+    <link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/monokai.css">
+    <script src="render.js"></script>
+    <script type="text/javascript" src="Table.js"></script>
+    <!--<script>if (window.module) module = window.module;</script>-->
+
+    <script>
+        $(document).ready(function () {
+            memTable = new Table(".mem-table", [["Memory Locations", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"],["Test Data"]]);
+	binTable = new Table(".bin-table", [["Memory Locations", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"], ["Test Data"]]);
+
+	memTable.createTable();
+	binTable.createTable();
+        });
+
+        $('#closeButton').click(function () {
+            window.close();
+        });
+    </script>
+</body>
+
+</html>

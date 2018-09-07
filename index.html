@@ -1,40 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>8085 Simulator</title>
-		<link rel="stylesheet" href="style.css">
-		<link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	</head>
-	<body>
-		<div id="menu">
-			<i class="material-icons">note_add</i>
-			<i class="material-icons">folder</i>
-			<i class="material-icons">save</i>
-			|
-			<i class="material-icons">undo</i>
-			<i class="material-icons">redo</i>
-			|
-			<i class="material-icons">play_arrow</i>
+
+<head>
+	<meta charset="UTF-8">
+	<title>8085 Simulator</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+</head>
+
+<body>
+	<div id="menu">
+		<i class="material-icons">note_add</i>
+		<i class="material-icons">folder</i>
+		<i class="material-icons">save</i>
+		|
+		<i class="material-icons">undo</i>
+		<i class="material-icons">redo</i>
+		|
+		<i id="start-button" class="material-icons">play_arrow</i>
+	</div>
+	<div id="v_sep"></div>
+	<div id="container">
+		<div id="project_explorer"></div>
+		<div id="h_sep"></div>
+		<div id="editor">
+			<div id="text_area"></div>
 		</div>
-		<div id="v_sep"></div>
-		<div id="container">
-			<div id="project_explorer"></div>
-			<div id="h_sep"></div>
-			<div id="editor">
-				<div id="text_area"></div>
+		<div style="display:none" id="tables">
+			<div class="innerTableContainer">
+				<div id="tableContainer">
+					<table class="mem-table"></table>
+				</div>
+				<div id="tableContainer">
+					<table class="bin-table"></table>
+				</div>
+				<div class="roundButton" id="revealButton"><i class="material-icons">search</i>Reveal</div>
+				<div class="roundButton" id="popoutButton"><i class="material-icons">picture_in_picture</i>Popout</div>
 			</div>
 		</div>
-		<!--<script>if (typeof module === 'object') {
+	</div>
+	<!--<script>if (typeof module === 'object') {
 			window.module = module;
 			module = undefined;
 		}</script>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>-->
-		<script type="text/javascript" src = "./node_modules/codemirror/mode/javascript/javascript.js"></script>
-		<link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/monokai.css">
-		<script src="render.js"></script>
-		<!--<script>if (window.module) module = window.module;</script>-->
-	</body>
+	<script type="text/javascript" src="./node_modules/codemirror/mode/javascript/javascript.js"></script>
+	<link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/monokai.css">
+	<script src="render.js"></script>
+	<script type="text/javascript" src="Table.js"></script>
+	<!--<script>if (window.module) module = window.module;</script>-->
+
+	<script>
+		$('#popoutButton').click(function () {
+			const remote = require('electron').remote;
+			const path = require('path')
+			const BrowserWindow = remote.BrowserWindow;
+			const modalPath = path.join('file://', __dirname, 'popout.html')
+
+			var win = new BrowserWindow({frame: false, width: 800, height: 600 });
+
+			win.loadURL(modalPath);
+
+		});
+
+		$("#revealButton").click(function(){
+			memTable.highlightMemory();
+		});
+	</script>
+</body>
+
 </html>

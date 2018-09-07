@@ -13,6 +13,10 @@
     */
 }
 
+*{
+    font-family: 'Open Sans', sans-serif;
+}
+
 html, body {
     width: 100%;
     height: 100%;
@@ -55,6 +59,85 @@ html, body {
     right: 0;
 }
 
+#tables {
+    position: absolute;
+    /*height: calc(100% - 28px);*/
+    height: calc(100vh - 28px);
+    background-color: var(--editor-colour);
+    width: calc(75% - 2px);
+    right: 0;
+}
+
+.innerTableContainer{
+    padding-top:45px;
+
+    position:relative;
+
+    height:300px;
+    
+    overflow-y:scroll;
+    overflow-x:hidden;
+
+    box-shadow:0px 0px 10px rgba(0,0,0,.2);
+}
+
+.roundButton {
+    cursor:pointer;
+
+    padding-left:12px;
+    padding-right:12px;
+    border-radius:40px;
+
+    width:90px;
+    height:45px;
+    line-height:45px;
+    float:right;
+
+    text-align:center;
+
+    position:absolute;
+
+    font-size:14px;
+
+    right:10px;
+    top:10px;
+
+    /* Stop from highlighting */
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none;
+    user-select: none; 
+
+    background-color: var(--seperator-bar-colour);
+    color:white;
+
+    box-shadow:0px 0px 10px rgba(0,0,0,.2);
+
+    transition-duration:.2s;
+}
+
+.roundButton:hover{
+    box-shadow:0px 0px 13px rgba(0,0,0,.4);
+    transition-duration:.2s;
+}
+
+.roundButton:active{
+    transform: scale(1.04);
+    transition-duration:.2s;
+}
+
+.roundButton i{
+    line-height:45px;
+    float:left;
+}
+
+#revealButton{
+    right: 135px;
+}
+
+
 #h_sep {
     left: calc(25% - 2px);
     position: absolute;
@@ -70,10 +153,18 @@ html, body {
     padding-left: 3px;
     padding-right:3px;
 
+    /* Stop from highlighting */
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none;
+    user-select: none; 
+
     transition-duration:.2s;
 }
 
-.material-icons:hover{
+#menu .material-icons:hover{
     box-shadow:0px 0px 10px rgba(0,0,0,.2);
     background-color: rgba(0,0,0,.1);
 
@@ -82,9 +173,98 @@ html, body {
     transition-duration: .2s;
 }
 
-.material-icons:active{
+#menu .material-icons:active{
     box-shadow:0px 0px 20px rgba(0,0,0,.3);
     background-color: rgba(0,0,0,.2);
 
     transition-duration:.2s;
+}
+
+/* Table Styling */
+/* Housing for table element */
+#tableContainer {
+    /* Allow for parent resizing */
+    resize: both;
+    overflow: auto;
+    /* Set initial size */
+    width: auto;
+    height: auto;
+    /* Styling: */
+    box-shadow: 0px 0px 13px rgba(0, 0, 0, .2);
+    /* Set max width/height */
+    max-width: 100%;
+    max-height: 100%;
+    /* Margin */
+    margin: 20px;
+}
+
+/* Table styling */
+
+table {
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+}
+
+table * {
+    text-align: center;
+    padding: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, .2);
+}
+
+/* Row styling */
+
+tr {
+    background-color:rgb(252, 252, 252)!important;
+    transition-duration: .5s;
+}
+
+tr:nth-child(odd) {
+    background-color: rgba(0, 0, 0, .05);
+}
+
+/* Active row */
+
+tbody .active {
+    background-color: rgba(10, 143, 10, .2) !important;
+    transition-duration: .2s;
+}
+
+/* Header styling */
+
+th {
+    height: 30px !important;
+    background-color: rgba(0, 0, 0, .1);
+}
+
+/* Data cell styling */
+
+tr td {
+    transition-duration: .5s;
+}
+
+/* Active data cell */
+
+tr .active {
+    background-color: rgba(10, 143, 10, .7) !important;
+    transition-duration: .8s;
+    color: black;
+    font-weight: bold;
+    transform: scale(.9, .9);
+    animation: attention 5s infinite;
+    animation-delay: 1s;
+}
+
+/* Animation to draw attention */
+
+@keyframes attention {
+    0% {
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5);
+    }
+    60% {
+        box-shadow: 0px 0px 70px rgba(0, 0, 0, 0);
+    }
 }
