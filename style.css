@@ -26,6 +26,15 @@ html, body {
     flex-direction: column;
 }
 
+.icon_sep {
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+.material-icons {
+    vertical-align: middle;
+}
+
 #menu {
     width: 100%;
     height: 24px;

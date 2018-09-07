@@ -36,7 +36,7 @@ class command {
 }
 
 let registers = {};
-registers["a"] = new byte(0,0,0,0,0,0,0,0);
+registers["a"] = new byte(0, 0, 0, 0, 0, 0, 0, 0);
 
 let commands = {};
 commands["cmp"] = new command([0xb8, 0xbf], function(params) {
@@ -51,6 +51,16 @@ commands["ana"] = new command([0xa0, 0xa7], function(params) {
 
 
 function run() {
+
+	$("#editor").css('display', 'none');
+	$("#tables").css('display', 'block');
+
+	let memTable = new Table("#mem-table", [["Memory Locations", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"], ["00", "01", "10", "00", "00", "00", "01", "10", "00", "00"], ["00", "00", "00"], ["00", "01", "10", "00", "00"]]);
+	let binTable = new Table("#bin-table", [["Memory Locations", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"], ["Test Data"]]);
+
+	memTable.createTable();
+	binTable.createTable();
+
 	const lines = area.getValue().split("\n");
 	for (let i in lines) {
 		const cmds = lines[i];
@@ -88,18 +98,4 @@ $(function() {
 		mode: "8085",
 		theme: 'monokai'
 	});
-});
-
-var memTable;
-var binTable;
-
-$("#start-button").click(function(){
-	$("#editor").css('display','none');
-	$("#tables").css('display', 'block');
-
-	memTable = new Table("#mem-table", [["Memory Locations", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"],["00","01", "10", "00", "00","00","01", "10", "00", "00"],["00", "00", "00"],["00","01", "10", "00", "00"]]);
-	binTable = new Table("#bin-table", [["Memory Locations", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"], ["Test Data"]]);
-
-	memTable.createTable();
-	binTable.createTable();
 });
