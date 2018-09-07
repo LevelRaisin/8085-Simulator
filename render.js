@@ -67,7 +67,7 @@ function run() {
 		const cmd = cmds[0].toLowerCase();
 		if (cmd === "hlt") break;
 		else if (cmd !== "nop") {
-			commands["cmd"].fun(cmds.slice(1));
+			commands[cmd].fun(cmds.slice(1));
 		}
 	}
 }
