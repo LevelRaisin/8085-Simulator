@@ -35,39 +35,18 @@ class command {
 	}
 }
 
-let registers;
-registers["a"] = byte(0,0,0,0,0,0,0,0);
+let registers = {};
+registers["a"] = new byte(0,0,0,0,0,0,0,0);
 
-let commands;
-commands["cmp"] = command([0xb8, 0xbf], function(params) {
-
-});
-commands["cpi"] = command([0xfe], function(params) {
+let commands = {};
+commands["cmp"] = new command([0xb8, 0xbf], function(params) {
 
 });
-commands["ana"] = command([0xa0, 0xa7], function(params) {
+commands["cpi"] = new command([0xfe], function(params) {
+
+});
+commands["ana"] = new command([0xa0, 0xa7], function(params) {
 	registers["a"] = registers["a"]
-});
-commands["cmp"] = command([0xb8, 0xbf], function(params) {
-
-});
-commands["cmp"] = command([0xb8, 0xbf], function(params) {
-
-});
-commands["cmp"] = command([0xb8, 0xbf], function(params) {
-
-});
-commands["cmp"] = command([0xb8, 0xbf], function(params) {
-
-});
-commands["cmp"] = command([0xb8, 0xbf], function(params) {
-
-});
-commands["cmp"] = command([0xb8, 0xbf], function(params) {
-
-});
-commands["cmp"] = command([0xb8, 0xbf], function(params) {
-
 });
 
 
