@@ -1,5 +1,5 @@
 /* Variables */
-:root{
+:root {
     --seperator-bar-colour: lightcoral;
     --editor-colour: lightblue;
     --file-tree: lightskyblue;
@@ -38,13 +38,13 @@ html, body {
 #menu {
     width: 100%;
     height: 24px;
-    background-color: var(--menu); 
+    background-color: var(--menu);
 }
 
 #v_sep {
     width: 100%;
     height: 4px;
-    background-color: var(--seperator-bar-colour); 
+    background-color: var(--seperator-bar-colour);
 }
 
 #container {
@@ -59,7 +59,7 @@ html, body {
     width: calc(25% - 2px);
 }
 
-#editor {
+#tabs {
     position: absolute;
     /*height: calc(100% - 28px);*/
     height: calc(100vh - 28px);
@@ -68,84 +68,83 @@ html, body {
     right: 0;
 }
 
+/*
 #tables {
     position: absolute;
-    /*height: calc(100% - 28px);*/
     height: calc(100vh - 28px);
     background-color: var(--editor-colour);
     width: calc(75% - 2px);
     right: 0;
-}
+}*/
 
-.innerTableContainer{
-    padding-top:45px;
+.innerTableContainer {
+    padding-top: 45px;
 
-    position:relative;
+    position: relative;
 
-    height:300px;
-    
-    overflow-y:scroll;
-    overflow-x:hidden;
+    height: 300px;
 
-    box-shadow:0px 0px 10px rgba(0,0,0,.2);
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .2);
 }
 
 .roundButton {
-    cursor:pointer;
+    cursor: pointer;
 
-    padding-left:12px;
-    padding-right:12px;
-    border-radius:40px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 40px;
 
-    width:90px;
-    height:45px;
-    line-height:45px;
-    float:right;
+    width: 90px;
+    height: 45px;
+    line-height: 45px;
+    float: right;
 
-    text-align:center;
+    text-align: center;
 
-    position:absolute;
+    position: absolute;
 
-    font-size:14px;
+    font-size: 14px;
 
-    right:10px;
-    top:10px;
+    right: 10px;
+    top: 10px;
 
     /* Stop from highlighting */
-    -webkit-touch-callout: none; 
-    -webkit-user-select: none; 
-    -khtml-user-select: none; 
-    -moz-user-select: none; 
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none; 
+    user-select: none;
 
     background-color: var(--seperator-bar-colour);
-    color:white;
+    color: white;
 
-    box-shadow:0px 0px 10px rgba(0,0,0,.2);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .2);
 
-    transition-duration:.2s;
+    transition-duration: .2s;
 }
 
-.roundButton:hover{
-    box-shadow:0px 0px 13px rgba(0,0,0,.4);
-    transition-duration:.2s;
+.roundButton:hover {
+    box-shadow: 0px 0px 13px rgba(0, 0, 0, .4);
+    transition-duration: .2s;
 }
 
-.roundButton:active{
+.roundButton:active {
     transform: scale(1.04);
-    transition-duration:.2s;
+    transition-duration: .2s;
 }
 
-.roundButton i{
-    line-height:45px;
-    float:left;
+.roundButton i {
+    line-height: 45px;
+    float: left;
 }
 
-#revealButton{
+#revealButton {
     right: 135px;
 }
-
 
 #h_sep {
     left: calc(25% - 2px);
@@ -158,35 +157,32 @@ html, body {
 }
 
 /* Menu bar */
-.material-icons{
-    padding-left: 3px;
-    padding-right:3px;
+.material-icons {
+    padding-left: 2px;
+    padding-right: 2px;
 
     /* Stop from highlighting */
-    -webkit-touch-callout: none; 
-    -webkit-user-select: none; 
-    -khtml-user-select: none; 
-    -moz-user-select: none; 
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none; 
-
-    transition-duration:.2s;
-}
-
-#menu .material-icons:hover{
-    box-shadow:0px 0px 10px rgba(0,0,0,.2);
-    background-color: rgba(0,0,0,.1);
-
-    cursor: pointer;
+    user-select: none;
 
     transition-duration: .2s;
 }
 
-#menu .material-icons:active{
-    box-shadow:0px 0px 20px rgba(0,0,0,.3);
-    background-color: rgba(0,0,0,.2);
+#menu .material-icons:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    background-color: rgba(0, 0, 0, .1);
+    cursor: pointer;
+    transition-duration: .2s;
+}
 
-    transition-duration:.2s;
+#menu .material-icons:active {
+    box-shadow: 0 0 20px rgba(0, 0, 0, .3);
+    background-color: rgba(0, 0, 0, .2);
+    transition-duration: .2s;
 }
 
 /* Table Styling */
@@ -227,7 +223,7 @@ table * {
 /* Row styling */
 
 tr {
-    background-color:rgb(252, 252, 252)!important;
+    background-color: rgb(252, 252, 252) !important;
     transition-duration: .5s;
 }
 

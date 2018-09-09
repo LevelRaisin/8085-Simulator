@@ -25,19 +25,25 @@
 		<div id="container">
 			<div id="project_explorer"></div>
 			<div id="h_sep"></div>
-			<div id="editor">
-				<div id="text_area"></div>
-			</div>
-			<div style="display:none" id="tables">
-				<div class="innerTableContainer">
-					<div id="tableContainer">
-						<table id="mem-table"></table>
+			<div id="tabs">
+				<ul>
+					<li><a href="#editor">asd</a></li>
+					<li><a href="#tables">asdf</a></li>
+				</ul>
+				<div id="editor">
+					<div id="text_area"></div>
+				</div>
+				<div id="tables">
+					<div class="innerTableContainer">
+						<div id="tableContainer">
+							<table id="mem-table"></table>
+						</div>
+						<div id="tableContainer">
+							<table id="bin-table"></table>
+						</div>
+						<div class="roundButton" id="revealButton"><i class="material-icons">search</i>Reveal</div>
+						<div class="roundButton" id="popoutButton"><i class="material-icons">picture_in_picture</i>Popout</div>
 					</div>
-					<div id="tableContainer">
-						<table id="bin-table"></table>
-					</div>
-					<div class="roundButton" id="revealButton"><i class="material-icons">search</i>Reveal</div>
-					<div class="roundButton" id="popoutButton"><i class="material-icons">picture_in_picture</i>Popout</div>
 				</div>
 			</div>
 		</div>
@@ -48,6 +54,7 @@
 			<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>-->
 		<link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/monokai.css">
+		<link rel="stylesheet" type="text/css" href="./node_modules/jquery-ui/themes/base/tabs.css">
 		<script src="render.js"></script>
 		<script type="text/javascript" src="Table.js"></script>
 		<!--<script>if (window.module) module = window.module;</script>-->

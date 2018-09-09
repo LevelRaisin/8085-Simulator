@@ -1,6 +1,7 @@
 let $ = jQuery = require('jquery');
 let {remote} = require('electron');
-//require('jquery-ui');
+//require('jquery-ui/ui/widgets/tabs');
+//require('jquery-ui/ui/widgets/draggable');
 require('jquery-ui-dist/jquery-ui');
 let CodeMirror = require('codemirror');
 //require("codemirror/css/monokai.css");
@@ -10,80 +11,98 @@ require("codemirror/addon/selection/active-line");
 require("./8085simple.js");
 
 let area;
+let sign, zero, d2, auxiliary_carry, d4, parity, d6, carry;
 
-class byte {
-	constructor(sign, zero, d2, auxilary_carry, d4, parity, d6, carry) {
-		this.sign = sign;
-		this.zero = zero;
-		this.d2 = d2;
-		this.auxilary_carry = auxilary_carry;
-		this.d4 = d4;
-		this.parity = parity;
-		this.d6 = d6;
-		this.carry = carry;
-	}
+let table = [[]];
 
-	and(other) {
-
-	}
+function update_table(location, value) {
+	let x = location % (1 << 6), y = location / (1 << 6);
+	$(`$${x}-${y}`)[0].value = value;
+	table[x][y] = value;
+	//update in html
 }
 
 class command {
-	constructor(code, fun) {
+	constructor(code, func) {
 		this.code = code;
-		this.fun = fun;
+		this.func = func;
 	}
 }
 
 let registers = {};
-registers["a"] = new byte(0, 0, 0, 0, 0, 0, 0, 0);
+registers["a"] = 0;
 
 let commands = {};
 commands["cmp"] = new command([0xb8, 0xbf], function(params) {
-
+	let temp = registers["a"] - registers[params[0]];
+	if (temp === 0) zero = 1;
+	else if (temp > 1) carry = 1;
+	else {
+		zero = 0;
+		carry = 0;
+	}
 });
 commands["cpi"] = new command([0xfe], function(params) {
-
+	let temp = registers["a"] - params[0];
+	if (temp === 0) zero = 1;
+	if (temp > 1) carry = 1;
+	else {
+		zero = 0;
+		carry = 0;
+	}
 });
 commands["ana"] = new command([0xa0, 0xa7], function(params) {
-	registers["a"] = registers["a"]
+	registers["a"] = registers["a"] & registers[params[0]];
+	let a = registers["a"];
+	if (a < 0) sign = 1;
+	if (a === 0) zero = 1;
+	if (a) parity = 1;
+	carry = 0;
+	auxiliary_carry = 1;
 });
 
+
+let memTable;
+let binTable;
 
 function run() {
 
 	$("#editor").css('display', 'none');
 	$("#tables").css('display', 'block');
 
-	let memTable = new Table("#mem-table", [["Memory Locations", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"], ["00", "01", "10", "00", "00", "00", "01", "10", "00", "00"], ["00", "00", "00"], ["00", "01", "10", "00", "00"]]);
-	let binTable = new Table("#bin-table", [["Memory Locations", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"], ["Test Data"]]);
+	memTable = new Table("#mem-table", [["Memory Locations", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"], ["00", "01", "10", "00", "00", "00", "01", "10", "00", "00"], ["00", "00", "00"], ["00", "01", "10", "00", "00"]]);
+	binTable = new Table("#bin-table", [["Memory Locations", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"], ["Test Data"]]);
 
 	memTable.createTable();
 	binTable.createTable();
 
-	const lines = area.getValue().split("\n");
+	const lines = area.getValue().toLowerCase().split("\n");
+	console.log(table);
 	for (let i in lines) {
-		const cmds = lines[i];
-		const cmd = cmds[0].toLowerCase();
+		const cmds = lines[i].split(/[ ,]/);
+		console.log(cmds);
+		const cmd = cmds[0];
 		if (cmd === "hlt") break;
 		else if (cmd !== "nop") {
-			commands[cmd].fun(cmds.slice(1));
+			console.log(commands[cmd]);
+			commands[cmd].func(cmds.slice(1));
 		}
 	}
 }
 
 $(function() {
 	const $project_explorer = $('#project_explorer');
-	const $editor = $('#editor');
+	const $tabs = $('#tabs');
 	const $separator = $('#h_sep');
 	const $run = $('#run');
+	$tabs.tabs();
 	$run.click(run);
 	const splitter = function(event, ui) {
 		ui.position.left = Math.max(window.innerWidth * .1, ui.position.left);
 		ui.position.left = Math.min(window.innerWidth * .9, ui.position.left);
 		const aw = ui.position.left, bw = window.innerWidth - 4 - aw;
 		$project_explorer.width(aw);
-		$editor.width(bw);
+		$tabs.width(bw);
 	};
 	$separator.draggable({
 		axis: 'x',
@@ -91,7 +110,7 @@ $(function() {
 	});
 
 	area = CodeMirror($('#text_area')[0], {
-		value: "push eax\npop eax",
+		value: "CMP A,B\nCMP B,C",
 		lineNumbers: true,
 		styleActiveLine: true,
 		styleActiveSelected: true,
