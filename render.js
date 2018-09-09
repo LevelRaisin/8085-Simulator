@@ -1,7 +1,8 @@
 let $ = jQuery = require('jquery');
 let {remote} = require('electron');
-//require('jquery-ui/ui/widgets/tabs');
-//require('jquery-ui/ui/widgets/draggable');
+//let jQueryui = require('jquery-ui');
+//let tabs = require('jquery-ui/ui/widgets/tabs');
+//let draggable = require('jquery-ui/ui/widgets/draggable');
 require('jquery-ui-dist/jquery-ui');
 let CodeMirror = require('codemirror');
 //require("codemirror/css/monokai.css");
@@ -11,7 +12,7 @@ require("codemirror/addon/selection/active-line");
 require("./8085simple.js");
 
 let area;
-let sign, zero, d2, auxiliary_carry, d4, parity, d6, carry;
+let sign, zero, d2, auxiliary_carry, d4, parity, d6, carry, program_counter, stack_pointer;
 
 let table = [[]];
 
@@ -31,6 +32,14 @@ class command {
 
 let registers = {};
 registers["a"] = 0;
+
+function count_set_bits(i) {
+	let c = 0;
+	for (let i = 0; i < 8; i++) {
+		c += i & (1 << i);
+	}
+	return c;
+}
 
 let commands = {};
 commands["cmp"] = new command([0xb8, 0xbf], function(params) {
@@ -56,7 +65,25 @@ commands["ana"] = new command([0xa0, 0xa7], function(params) {
 	let a = registers["a"];
 	if (a < 0) sign = 1;
 	if (a === 0) zero = 1;
-	if (a) parity = 1;
+	if ((count_set_bits(registers["a"]) & 1) === 1) parity = 1;
+	carry = 0;
+	auxiliary_carry = 1;
+});
+commands["ani"] = new command([0xe6], function(params) {
+	registers["a"] = registers["a"] & params[0];
+	let a = registers["a"];
+	if (a < 0) sign = 1;
+	if (a === 0) zero = 1;
+	if ((count_set_bits(registers["a"]) & 1) === 1) parity = 1;
+	carry = 0;
+	auxiliary_carry = 1;
+});
+commands["xra"] = new command([0xa8, 0xaf], function(params) {
+	registers["a"] = registers["a"] ^ registers[params[0]];
+	let a = registers["a"];
+	if (a < 0) sign = 1;
+	if (a === 0) zero = 1;
+	if ((count_set_bits(registers["a"]) & 1) === 1) parity = 1;
 	carry = 0;
 	auxiliary_carry = 1;
 });
