@@ -4,13 +4,17 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>8085 Simulator</title>
+		<!-- Stylesheet references -->
 		<link rel="stylesheet" href="style.css">
 		<link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">
+
+		<!-- Google Fonts -->
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	</head>
 
 	<body>
+		<!-- Header menu -->
 		<div id="menu">
 			<i class="material-icons">note_add</i>
 			<i class="material-icons">folder</i>
@@ -22,17 +26,23 @@
 			<i id="run" class="material-icons">play_arrow</i>
 		</div>
 		<div id="v_sep"></div>
+
+		<!-- Page contents -->
 		<div id="container">
 			<div id="project_explorer"></div>
 			<div id="h_sep"></div>
 			<div id="tabs">
 				<ul>
-					<li><a href="#editor">asd</a></li>
-					<li><a href="#tables">asdf</a></li>
+					<li><a href="#editor">Editor</a></li>
+					<li><a href="#tables">Tables</a></li>
 				</ul>
+				
+				<!-- Text editor -->
 				<div id="editor">
 					<div id="text_area"></div>
 				</div>
+
+				<!-- Tables to display output -->
 				<div id="tables">
 					<div class="innerTableContainer">
 						<div id="tableContainer">
@@ -41,7 +51,7 @@
 						<div id="tableContainer">
 							<table id="bin-table"></table>
 						</div>
-						<div class="roundButton" id="revealButton"><i class="material-icons">search</i>Reveal</div>
+						<div class="roundButton" id="revealButton" style="right:135px;"><i class="material-icons">search</i>Reveal</div>
 						<div class="roundButton" id="popoutButton"><i class="material-icons">picture_in_picture</i>Popout</div>
 					</div>
 				</div>
@@ -58,28 +68,5 @@
 		<script src="render.js"></script>
 		<script type="text/javascript" src="Table.js"></script>
 		<!--<script>if (window.module) module = window.module;</script>-->
-
-		<script>
-			$('#popoutButton').click(function() {
-				const remote = require('electron').remote;
-				const path = require('path')
-				const BrowserWindow = remote.BrowserWindow;
-				const modalPath = path.join('file://', __dirname, 'popout.html')
-
-				var win = new BrowserWindow({width: 800, height: 600});
-
-				win.loadURL(modalPath);
-
-			});
-
-			$("#revealButton").click(function() {
-				if ($("#revealButton").html() == '<i class="material-icons">search</i>Reveal')
-					$("#revealButton").html('<i class="material-icons">search</i>Hide');
-				else
-					$("#revealButton").html('<i class="material-icons">search</i>Reveal');
-				memTable.highlightMemory();
-				binTable.highlightMemory();
-			});
-		</script>
 	</body>
 </html>

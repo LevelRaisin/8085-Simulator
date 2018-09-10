@@ -4,13 +4,6 @@
     --editor-colour: lightblue;
     --file-tree: lightskyblue;
     --menu: lightcyan;
-
-    /*
-        --seperator-bar-colour: #2b2c3a;
-    --editor-colour: #e2e2e2;
-    --file-tree: #e2e2e2;
-    --menu: #e2e2e2;
-    */
 }
 
 #container {
@@ -24,6 +17,8 @@ html, body {
     padding: 0;
     display: flex;
     flex-direction: column;
+
+    overflow:hidden;
 }
 
 .icon_sep {
@@ -65,17 +60,10 @@ html, body {
     height: calc(100vh - 28px);
     background-color: var(--editor-colour);
     width: calc(75% - 2px);
+    padding:0px;
+    border:none;
     right: 0;
 }
-
-/*
-#tables {
-    position: absolute;
-    height: calc(100vh - 28px);
-    background-color: var(--editor-colour);
-    width: calc(75% - 2px);
-    right: 0;
-}*/
 
 .innerTableContainer {
     padding-top: 45px;
@@ -86,9 +74,9 @@ html, body {
 
     overflow-y: scroll;
     overflow-x: hidden;
-
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, .2);
 }
+
+/* Round buttons (table panel) */
 
 .roundButton {
     cursor: pointer;
@@ -142,10 +130,6 @@ html, body {
     float: left;
 }
 
-#revealButton {
-    right: 135px;
-}
-
 #h_sep {
     left: calc(25% - 2px);
     position: absolute;
@@ -194,8 +178,6 @@ html, body {
     /* Set initial size */
     width: auto;
     height: auto;
-    /* Styling: */
-    box-shadow: 0px 0px 13px rgba(0, 0, 0, .2);
     /* Set max width/height */
     max-width: 100%;
     max-height: 100%;
@@ -203,7 +185,9 @@ html, body {
     margin: 20px;
 }
 
-/* Table styling */
+#tables{
+    padding:0px!important;
+}
 
 table {
     padding: 20px;
@@ -215,6 +199,7 @@ table {
 table * {
     text-align: center;
     padding: 10px;
+    color:black;
     border-style: solid;
     border-width: 1px;
     border-color: rgba(0, 0, 0, .2);
@@ -234,7 +219,7 @@ tr:nth-child(odd) {
 /* Active row */
 
 table .active {
-    background-color: rgba(10, 143, 10, .2) !important;
+    background-color: rgba(255, 255, 255, 1) !important;
     transition-duration: .2s;
 }
 
@@ -242,6 +227,7 @@ table .active {
 
 th {
     height: 30px !important;
+    color:rgb(60,60,60);
     background-color: rgba(0, 0, 0, .1);
 }
 
@@ -257,7 +243,6 @@ tr .active {
     background-color: rgba(10, 143, 10, .7) !important;
     transition-duration: .8s;
     color: black;
-    font-weight: bold;
     transform: scale(.9, .9);
     animation: attention 5s infinite;
     animation-delay: 1s;

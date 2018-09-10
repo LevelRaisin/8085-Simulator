@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>8085 Simulator</title>
+		<title>8085 Simulator - Tables</title>
 		<link rel="stylesheet" href="style.css">
 		<link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -21,21 +21,14 @@
 		<div style="z-index:10; -webkit-app-region: no-drag;" class="roundButton" id="revealButton"><i class="material-icons">search</i>Reveal</div>
 		<div style="z-index:10; -webkit-app-region: no-drag;" class="roundButton" id="closeButton"><i class="material-icons">highlight_off</i>Close
 		</div>
-		<!--<script>if (typeof module === 'object') {
-				window.module = module;
-				module = undefined;
-			}</script>
-			<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>-->
-		<script type="text/javascript" src="./node_modules/codemirror/mode/javascript/javascript.js"></script>
-		<link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/monokai.css">
+		
 		<script src="render.js"></script>
 		<script type="text/javascript" src="Table.js"></script>
-		<!--<script>if (window.module) module = window.module;</script>-->
-
+		
 		<script>
+			//To be replaced with transfer of data.
 			$(document).ready(function () {
-				memTablePop = new Table("#mem-table", [["Memory Locations", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"], ["Test Data"]]);
+				memTablePop = new Table("#mem-table", [["Memory Locations", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"], memTable.getData()]);
 				binTablePop = new Table("#bin-table", [["Memory Locations", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"], ["Test Data"]]);
 
 				memTablePop.createTable();
