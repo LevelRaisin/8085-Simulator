@@ -34,7 +34,8 @@
 			<div id="tabs">
 				<ul>
 					<li><a href="#editor">Editor</a></li>
-					<li><a href="#tables">Tables</a></li>
+					<li class="tableTab hidden"><a href="#tables">Memory Table</a></li>
+					<li class="tableTab hidden"><a href="#binaryTable">Binary Table</a></li>
 				</ul>
 				
 				<!-- Text editor -->
@@ -48,6 +49,14 @@
 						<div id="tableContainer">
 							<table id="mem-table"></table>
 						</div>
+						<div class="roundButton" id="revealButton" style="right:135px;"><i class="material-icons">search</i>Reveal</div>
+						<div class="roundButton" id="popoutButton"><i class="material-icons">picture_in_picture</i>Popout</div>
+					</div>
+				</div>
+
+				<!-- Tables to display output -->
+				<div id="binaryTable">
+					<div class="innerTableContainer">
 						<div id="tableContainer">
 							<table id="bin-table"></table>
 						</div>

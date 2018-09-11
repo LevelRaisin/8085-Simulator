@@ -103,6 +103,8 @@ function run() {
 	memTable.createTable();
 	binTable.createTable(true);
 
+	$(".tableTab").toggleClass("hidden");
+
 	const lines = area.getValue().toLowerCase().split("\n");
 	//console.log(table);
 	for (let i in lines) {

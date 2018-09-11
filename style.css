@@ -185,6 +185,10 @@ html, body {
     margin: 20px;
 }
 
+.hidden{
+    display:none;
+}
+
 #tables{
     padding:0px!important;
 }
