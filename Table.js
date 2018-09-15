@@ -40,7 +40,7 @@ function Table(tableName, tableData) {
 		var tablePopulation = "";
 		for (var x = 1; x < tableData.length; x++) {
 			if (this.tableNumbers == true)
-				tablePopulation += "<td>" + x.toString(2) + "</td>";
+				tablePopulation += "<td>" + x.toString(16) + "</td>";
 			for (var z = 0; z < tableData[x].length; z++)
 				tablePopulation += "<td>" + tableData[x][z] + "</td>"
 			tablePopulation += "</tr>";
