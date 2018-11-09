@@ -35,9 +35,9 @@
 				<ul>
 					<li class="tab"><a href="#editor">Editor</a></li>
 					<li class="tab"><a href="#binaryTable">Reference Table</a></li>
-					<li class="tab"><a href="#tables">Memory Table</a></li>
+					<li id="memTab" class="tab"><a href="#tables">Memory Table</a></li>
 				</ul>
-				
+
 				<!-- Text editor -->
 				<div id="editor">
 					<div id="text_area"></div>
@@ -63,6 +63,12 @@
 						<div class="roundButton" id="revealButton" style="right:135px;"><i class="material-icons">search</i>Reveal</div>
 						<div class="roundButton" id="popoutButton"><i class="material-icons">picture_in_picture</i>Popout</div>
 					</div>
+				</div>
+				<!-- Hex/Dec/Octal calculator -->
+				<div id="calculator">
+					<input class="calculatorInput" id="decimal" type="text">
+					<input class="calculatorInput" id="octal" type="text">
+					<input class="calculatorInput" id="hex" type="text">
 				</div>
 			</div>
 		</div>

@@ -103,6 +103,9 @@ function run() {
 	memTable.createTable();
 	binTable.createTable(true);
 
+	//Change current tab to memory table
+	$("#memTab a").click();
+
 	const lines = area.getValue().toLowerCase().split("\n");
 	//console.log(table);
 	for (let i in lines) {
@@ -144,4 +147,26 @@ $(function () {
 		mode: "8085",
 		theme: 'monokai'
 	});
+});
+
+
+$(".calculatorInput").on("input", function(){
+	var convertedDecimal;
+
+	// Check what was inputted and convert to decimal accordingly
+	if(this.id == "hex")
+		convertedDecimal = parseInt(this.value, 16);
+	else if(this.id == "octal")
+		convertedDecimal = parseInt(this.value, 2);
+	else
+		convertedDecimal = parseInt(this.value, 10);
+
+	// Errortrap NaN input
+	if(isNaN(convertedDecimal))
+		convertedDecimal = 0;
+
+		//Display values
+	$("#hex").val(convertedDecimal.toString(16));
+	$("#octal").val(convertedDecimal.toString(2));
+	$("#decimal").val(convertedDecimal);
 });
