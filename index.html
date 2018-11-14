@@ -1,87 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	<head>
-		<meta charset="UTF-8">
-		<title>8085 Simulator</title>
-		<!-- Stylesheet references -->
-		<link rel="stylesheet" href="style.css">
-		<link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">
+<head>
+	<meta charset="UTF-8">
+	<title>8085 Simulator</title>
+	<!-- Stylesheet references -->
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">
 
-		<!-- Google Fonts -->
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-	</head>
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+</head>
 
-	<body>
-		<!-- Header menu -->
-		<div id="menu">
-			<i class="material-icons">note_add</i>
-			<i class="material-icons">folder</i>
-			<i class="material-icons">save</i>
-			<span class="icon_sep">|</span>
-			<i class="material-icons">undo</i>
-			<i class="material-icons">redo</i>
-			<span class="icon_sep">|</span>
-			<i id="run" class="material-icons">play_arrow</i>
-		</div>
-		<div id="v_sep"></div>
+<body>
+	<!-- Header menu -->
+	<div id="menu">
+		<i class="material-icons">note_add</i>
+		<i class="material-icons">folder</i>
+		<i class="material-icons">save</i>
+		<span class="icon_sep">|</span>
+		<i class="material-icons">undo</i>
+		<i class="material-icons">redo</i>
+		<span class="icon_sep">|</span>
+		<i id="run" class="material-icons">play_arrow</i>
+	</div>
+	<div id="v_sep"></div>
 
-		<!-- Page contents -->
-		<div id="container">
-			<div id="project_explorer"></div>
-			<div id="h_sep"></div>
-			<div id="tabs">
-				<ul>
-					<li class="tab"><a href="#editor">Editor</a></li>
-					<li class="tab"><a href="#binaryTable">Reference Table</a></li>
-					<li id="memTab" class="tab"><a href="#tables">Memory Table</a></li>
-				</ul>
+	<!-- Page contents -->
+	<div id="container">
+		<div id="project_explorer"></div>
+		<div id="h_sep"></div>
+		<div id="tabs">
+			<ul>
+				<li class="tab"><a href="#editor">Editor</a></li>
+				<li class="tab"><a href="#binaryTable">Reference Table</a></li>
+				<li class="tab"><a href="#tables">Memory Table</a></li>
+			</ul>
 
-				<!-- Text editor -->
-				<div id="editor">
-					<div id="text_area"></div>
-				</div>
+			<!-- Text editor -->
+			<div id="editor">
+				<div id="text_area"></div>
+			</div>
 
-				<!-- Tables to display output -->
-				<div id="tables">
-					<div class="innerTableContainer">
-						<div id="tableContainer">
-							<table id="mem-table"></table>
-						</div>
-						<div class="roundButton" id="revealButton" style="right:135px;"><i class="material-icons">search</i>Reveal</div>
-						<div class="roundButton" id="popoutButton"><i class="material-icons">picture_in_picture</i>Popout</div>
+			<!-- Tables to display output -->
+			<div id="tables">
+				<div class="innerTableContainer">
+					<div id="tableContainer">
+						<table id="mem-table"></table>
 					</div>
+					<div class="roundButton" id="revealButton" style="right:135px;"><i class="material-icons">search</i>Reveal</div>
+					<div class="roundButton" id="popoutButton"><i class="material-icons">picture_in_picture</i>Popout</div>
 				</div>
+			</div>
 
-				<!-- Tables to display output -->
-				<div id="binaryTable">
-					<div class="innerTableContainer">
-						<div id="tableContainer">
-							<table id="bin-table"></table>
-						</div>
-						<div class="roundButton" id="revealButton" style="right:135px;"><i class="material-icons">search</i>Reveal</div>
-						<div class="roundButton" id="popoutButton"><i class="material-icons">picture_in_picture</i>Popout</div>
+			<!-- Tables to display output -->
+			<div id="binaryTable">
+				<div class="innerTableContainer">
+					<div id="tableContainer">
+						<table id="bin-table"></table>
 					</div>
-				</div>
-				<!-- Hex/Dec/Octal calculator -->
-				<div id="calculator">
-					<input class="calculatorInput" id="decimal" type="text">
-					<input class="calculatorInput" id="octal" type="text">
-					<input class="calculatorInput" id="hex" type="text">
+					<div class="roundButton" id="revealButton" style="right:135px;"><i class="material-icons">search</i>Reveal</div>
+					<div class="roundButton" id="popoutButton"><i class="material-icons">picture_in_picture</i>Popout</div>
 				</div>
 			</div>
 		</div>
-		<!--<script>if (typeof module === 'object') {
+	</div>
+	<!--<script>if (typeof module === 'object') {
 				window.module = module;
 				module = undefined;
 			}</script>
 			<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>-->
-		<link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/monokai.css">
-		<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css">
-		<script src="render.js"></script>
-		<script type="text/javascript" src="Table.js"></script>
-		<!--<script>if (window.module) module = window.module;</script>-->
-	</body>
+	<link rel="stylesheet" type="text/css" href="./node_modules/codemirror/theme/monokai.css">
+	<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css">
+	<script src="render.js"></script>
+	<script type="text/javascript" src="Table.js"></script>
+	<script>loadColours();</script>
+
+	<!--<script>if (window.module) module = window.module;</script>-->
+</body>
+
 </html>
