@@ -1,12 +1,11 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const {app, BrowserWindow, Menu} = require('electron');
 const path = require('path');
 const url = require('url');
-const os = require('os');
 
 let win;
 
 function createWindow() {
-	win = new BrowserWindow({ width: 800, height: 600 });
+	win = new BrowserWindow({width: 800, height: 600});
 
 	win.loadURL(url.format({
 		pathname: path.join(__dirname, 'index.html'),
@@ -43,7 +42,7 @@ function createWindow() {
 						}
 					]*/
 				},
-				{ type: 'separator' },
+				{type: 'separator'},
 				{
 					label: 'Open',
 					click() {
@@ -73,15 +72,15 @@ function createWindow() {
 		{
 			label: 'Edit',
 			submenu: [
-				{ role: 'cut' },
-				{ role: 'copy' },
-				{ role: 'paste' },
-				{ role: 'pasteandmatchstyle' },
-				{ type: 'separator' },
-				{ role: 'undo' },
-				{ role: 'redo' },
-				{ role: 'selectall' },
-				{ type: 'separator' },
+				{role: 'cut'},
+				{role: 'copy'},
+				{role: 'paste'},
+				{role: 'pasteandmatchstyle'},
+				{type: 'separator'},
+				{role: 'undo'},
+				{role: 'redo'},
+				{role: 'selectall'},
+				{type: 'separator'},
 				{
 					label: 'Auto-Indent',
 					click() {
@@ -103,7 +102,6 @@ function createWindow() {
 					label: 'Preferences',
 					click() {
 						console.log('preferences clicked');
-						openSettings();
 					}
 				},
 				{
@@ -193,20 +191,6 @@ function createWindow() {
 
 	const menu = Menu.buildFromTemplate(template);
 	Menu.setApplicationMenu(menu);
-}
-
-function openSettings(){
-	pref = new BrowserWindow({ width: 800, height: 600 });
-
-	pref.loadURL(url.format({
-		pathname: path.join(__dirname, 'preferences.html'),
-		protocol: 'file:',
-		slashes: true
-	}));
-
-	pref.on('closed', () => {
-		pref = null;
-	});
 }
 
 app.on('ready', createWindow);
