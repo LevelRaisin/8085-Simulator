@@ -1,13 +1,26 @@
 /* Variables */
 :root {
+    /*
     --seperator-bar-colour: lightcoral;
     --editor-colour: lightblue;
     --file-tree: lightskyblue;
     --menu: lightcyan;
+    */
+
+    --seperator-bar-colour: #535353;
+    --editor-colour: #b9b9b9;
+    --file-tree: #272727;
+    --menu: #6d6d6d;
+
+    --navBackground: #444444;
+    --tabColour: #313131;
+    --activeTab: #d18f00;
 }
 
 #container {
     font-family: 'Open Sans', sans-serif;
+    width: 100%;
+    flex: 1;
 }
 
 html, body {
@@ -21,30 +34,55 @@ html, body {
     overflow:hidden;
 }
 
+/* Upper menu */
+#menu {
+    width: 100%;
+    height: 35px;
+    background-color: var(--menu);
+}
+
 .icon_sep {
     vertical-align: middle;
     font-size: 20px;
 }
 
 .material-icons {
+    color:rgb(241, 239, 239);
+
+    padding:5px;
+    padding-left:10px;
+    padding-right:10px;
+
     vertical-align: middle;
+
+    /* Stop from highlighting */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    transition-duration: .2s;
 }
 
-#menu {
-    width: 100%;
-    height: 24px;
-    background-color: var(--menu);
+#menu .material-icons:hover {
+    background-color: rgba(0, 0, 0, .1);
+    cursor: pointer;
+    transition-duration: .2s;
 }
 
+#menu .material-icons:active {
+    box-shadow: 0 0 20px rgba(0, 0, 0, .3);
+    background-color: rgba(0, 0, 0, .2);
+    transition-duration: .2s;
+}
+
+/* Vertical seperator bar */
 #v_sep {
     width: 100%;
-    height: 4px;
+    height: 0px;
     background-color: var(--seperator-bar-colour);
-}
-
-#container {
-    width: 100%;
-    flex: 1;
 }
 
 #project_explorer {
@@ -77,7 +115,6 @@ html, body {
 }
 
 /* Round buttons (table panel) */
-
 .roundButton {
     cursor: pointer;
 
@@ -86,8 +123,8 @@ html, body {
     border-radius: 40px;
 
     width: 90px;
-    height: 6vh;
-    line-height: 6vh;
+    height: 45px;
+    line-height: 45px;
     float: right;
 
     text-align: center;
@@ -126,7 +163,7 @@ html, body {
 }
 
 .roundButton i {
-    line-height: 45px;
+    line-height: 35px;
     float: left;
 }
 
@@ -138,35 +175,6 @@ html, body {
     height: calc(100vh - 28px);
     background-color: var(--seperator-bar-colour);
     cursor: ew-resize;
-}
-
-/* Menu bar */
-.material-icons {
-    padding-left: 2px;
-    padding-right: 2px;
-
-    /* Stop from highlighting */
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
-    transition-duration: .2s;
-}
-
-#menu .material-icons:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-    background-color: rgba(0, 0, 0, .1);
-    cursor: pointer;
-    transition-duration: .2s;
-}
-
-#menu .material-icons:active {
-    box-shadow: 0 0 20px rgba(0, 0, 0, .3);
-    background-color: rgba(0, 0, 0, .2);
-    transition-duration: .2s;
 }
 
 /* Table Styling */
@@ -185,8 +193,26 @@ html, body {
     margin: 0px;
 }
 
+.ui-tabs-tab{
+    background: var(--tabColour)!important;
+    border:0px!important;
+}
+
+.ui-tabs-active{
+    background:var(--activeTab)!important;
+}
+
 .ui-tabs .ui-tabs-panel{
     height: calc(100vh - 175px);
+}
+
+.ui-widget-header{
+    background: var(--navBackground)!important;
+    overflow:hidden;
+}
+
+.ui-corner-all{
+    border-radius:0px!important;
 }
 
 .hidden{
@@ -200,7 +226,6 @@ html, body {
 
 .ui-tabs-panel{
     padding:0px!important;
-    overflow-y:hidden!important;
 }
 
 table {
@@ -262,6 +287,10 @@ tr .active {
     animation-delay: 1s;
 }
 
+.calculatorInput{
+  text-transform:uppercase;
+}
+
 /* Animation to draw attention */
 
 @keyframes attention {
@@ -271,9 +300,4 @@ tr .active {
     60% {
         box-shadow: 0px 0px 70px rgba(0, 0, 0, 0);
     }
-}
-
-
-.calculatorInput{
-  text-transform:uppercase;
 }

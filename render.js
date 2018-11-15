@@ -1,5 +1,6 @@
 let $ = jQuery = require('jquery');
 let { remote } = require('electron');
+const settings = require('electron-settings');
 //let jQueryui = require('jquery-ui');
 //let tabs = require('jquery-ui/ui/widgets/tabs');
 //let draggable = require('jquery-ui/ui/widgets/draggable');
@@ -94,20 +95,20 @@ let binTable;
 
 function run() {
 
-	$("#editor").css('display', 'none');
-	$("#tables").css('display', 'block');
+	//$("#editor").css('display', 'none');
+	//$("#tables").css('display', 'block');
 
 	memTable = new Table("#mem-table", [["Memory Locations", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]]);
-	binTable = new Table("#bin-table", [["Name", "Binary Representation", "Hexadecimal"],["A","0000 0000","00"], ["B","0000 0000","00"], ["C","0000 0000","00"], ["D","0000 0000","00"], ["E","0000 0000","00"], ["H","0000 0000","00"], ["L","0000 0000","00"], ["M","0000 0000","00"], ["PC","0000 0000 0000 0000","00 00"], ["SP","0000 0000 0000 0000","00 00"], ["Flags","0000 0000","00"]]);
+	binTable = new Table("#bin-table", [["Name", "Binary Representation", "Hexadecimal"], ["A", "0000 0000", "00"], ["B", "0000 0000", "00"], ["C", "0000 0000", "00"], ["D", "0000 0000", "00"], ["E", "0000 0000", "00"], ["H", "0000 0000", "00"], ["L", "0000 0000", "00"], ["M", "0000 0000", "00"], ["PC", "0000 0000 0000 0000", "00 00"], ["SP", "0000 0000 0000 0000", "00 00"], ["Flags", "0000 0000", "00"]]);
 
 	memTable.createTable();
 	binTable.createTable(true);
 
 	//Change current tab to memory table
-	$("#memTab a").click();
+$("#memTab a").click();
 
 	const lines = area.getValue().toLowerCase().split("\n");
-	//console.log(table);
+	//console.log(table)
 	for (let i in lines) {
 		const cmds = lines[i].split(/[ ,]/);
 		//console.log(cmds);
@@ -118,6 +119,18 @@ function run() {
 			commands[cmd].func(cmds.slice(1));
 		}
 	}
+
+	$('#tables').addClass("active");
+}
+
+function loadColours() {
+	$(":root").css({
+		"--seperator-bar-colour": settings.get('colours.accent'),
+		"--editor-colour": settings.get('colours.editor'),
+		"--file-tree": settings.get('colours.files'),
+		"--menu": settings.get('colours.menu'),
+		"--tabColour": settings.get('colours.tab')
+	});
 }
 
 $(function () {
@@ -149,23 +162,19 @@ $(function () {
 	});
 });
 
-
 $(".calculatorInput").on("input", function(){
 	var convertedDecimal;
-
-	// Check what was inputted and convert to decimal accordingly
+ 	// Check what was inputted and convert to decimal accordingly
 	if(this.id == "hex")
 		convertedDecimal = parseInt(this.value, 16);
 	else if(this.id == "octal")
 		convertedDecimal = parseInt(this.value, 2);
 	else
 		convertedDecimal = parseInt(this.value, 10);
-
-	// Errortrap NaN input
+ 	// Errortrap NaN input
 	if(isNaN(convertedDecimal))
 		convertedDecimal = 0;
-
-		//Display values
+ 		//Display values
 	$("#hex").val(convertedDecimal.toString(16));
 	$("#octal").val(convertedDecimal.toString(2));
 	$("#decimal").val(convertedDecimal);

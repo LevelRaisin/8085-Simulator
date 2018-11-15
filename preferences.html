@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>8085 Simulator - Preferences</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+</head>
+
+<body>
+	<style>
+		*{
+		font-family: 'Open Sans', sans-serif;
+	}		
+
+	label{
+		float: left; width: 10em; margin-right: 1em;
+	}
+	</style>
+
+	<div style="cursor: move; padding-bottom:45px; z-index:5; box-shadow:0px 0px 10px rgba(0,0,0,.2); -webkit-app-region: drag; height:20px; width:100%; background-color: #424242;"></div>
+	<div style="z-index:10; -webkit-app-region: no-drag;" class="roundButton" id="revealButton"><i class="material-icons">search</i>Reveal</div>
+	<div style="z-index:10; -webkit-app-region: no-drag;" class="roundButton" id="closeButton"><i class="material-icons">highlight_off</i>Close</div>
+	</div>
+	<h2>Display Preferences</h2>
+	<div>
+		<input name="accentColour" type="color" id="accentColour" value="#ff0000">
+		<label for="accentColour">Accent Colour:</label>
+	</div>
+	<div>
+		<input type="color" id="editorColour" value="#ff0000">
+		<label for="accentColour">Editor Colour:</label>
+	</div>
+	<div>
+		<input type="color" id="filesColour" value="#ff0000">
+		<label for="accentColour">File Tree Colour:</label>
+	</div>
+	<div>
+	<input type="color" id="menuColour" value="#ff0000">
+	<label for="accentColour">Menu Bar Colour:</label>
+	</div>
+	<div>
+	<input type="color" id="tabColour" value="#ff0000">
+	<label for="accentColour">Tab Colour:</label>
+	</div>
+
+	<button id="default">Default Colours</button>
+	<button id="save">Save Preferences</button>
+
+	<script src="render.js"></script>
+
+	<script>
+
+		$("#default").click(function () {
+			settings.set('colours', {
+				accent: "#535353",
+				editor: "#b9b9b9",
+				files: "#272727",
+				menu: "#6d6d6d",
+				tab: "#313131"
+			});
+			alert("Default colours set.");
+		});
+
+		$("#save").click(function () {
+			settings.set('colours', {
+				accent: $("#accentColour").val(),
+				editor: $("#editorColour").val(),
+				files: $("#filesColour").val(),
+				menu: $("#menuColour").val(),
+				tab: $("#tabColour").val()
+			});
+			alert('Custom colours saved.');
+			loadColours();
+		});
+	</script>
+</body>
+
+</html>
