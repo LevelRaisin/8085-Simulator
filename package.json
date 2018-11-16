@@ -5,6 +5,7 @@
 	"private": true,
 	"dependencies": {
 		"codemirror": "^5.41.0",
+		"directory-tree": "^2.1.0",
 		"electron": "^2.0.13",
 		"electron-settings": "^3.2.0",
 		"jquery": "^3.3.1",

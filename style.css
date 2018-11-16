@@ -90,6 +90,7 @@ html, body {
     height: calc(100vh - 28px);
     background-color: var(--file-tree);
     width: calc(25% - 2px);
+    overflow-y:auto;
 }
 
 #tabs {
@@ -170,11 +171,12 @@ html, body {
 #h_sep {
     left: calc(25% - 2px);
     position: absolute;
-    width: 4px;
+    width: 5px;
     /*height: calc(100% - 28px);*/
     height: calc(100vh - 28px);
     background-color: var(--seperator-bar-colour);
     cursor: ew-resize;
+    z-index:5;
 }
 
 /* Table Styling */
@@ -226,6 +228,10 @@ html, body {
 
 .ui-tabs-panel{
     padding:0px!important;
+}
+
+.ui-widget-content{
+    background: var(--editor-colour)!important;
 }
 
 table {
@@ -287,8 +293,73 @@ tr .active {
     animation-delay: 1s;
 }
 
+/* Calculator */
+
+#calculator{
+    height:50%;
+    width:100%;
+    padding:2px;
+    line-height:200%;
+    text-align:center;
+    background-color:var(--file-tree);
+}
+
 .calculatorInput{
   text-transform:uppercase;
+  padding:5px;
+  border:none;
+  border-radius:2px;
+  width: calc(32% - 10px);
+}
+
+#labelContainer{
+    width:100%;
+}
+
+#labelContainer label{
+    width:32%;
+    display:inline-block;
+    text-align:left;
+}
+
+/* File Tree */
+.rowItem{
+    height:30px;
+    width:100%;
+    color:white;
+    line-height:30px;
+    cursor: pointer;
+}
+
+.rowItem:hover{
+    background-color: rgba(255,255,255,.2);
+}
+
+.rowItem .material-icons{
+    height: 30px;
+    padding: 0px;
+    padding-left:5px;
+    padding-right:10px;
+    line-height: 30px;
+    float:left;
+}
+
+.folder{
+    height:30px;
+    overflow:hidden;
+}
+
+.folder *{
+    padding-left:15px;
+    white-space:nowrap;
+}
+
+.folder-row{
+    padding-left:0px;
+}
+
+.folder.active{
+    height:auto;
 }
 
 /* Animation to draw attention */

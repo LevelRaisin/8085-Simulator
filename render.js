@@ -1,5 +1,6 @@
 let $ = jQuery = require('jquery');
 let { remote } = require('electron');
+const dialog = require('electron').remote.dialog
 const settings = require('electron-settings');
 //let jQueryui = require('jquery-ui');
 //let tabs = require('jquery-ui/ui/widgets/tabs');
@@ -11,7 +12,10 @@ require("codemirror/addon/edit/closebrackets");
 require("codemirror/addon/mode/simple");
 require("codemirror/addon/selection/active-line");
 require("./8085simple.js");
+const dirTree = require('directory-tree');
 
+
+let projectDirectory;
 let area;
 let sign, zero, d2, auxiliary_carry, d4, parity, d6, carry, program_counter, stack_pointer;
 
@@ -105,7 +109,7 @@ function run() {
 	binTable.createTable(true);
 
 	//Change current tab to memory table
-$("#memTab a").click();
+	$("#memTab a").click();
 
 	const lines = area.getValue().toLowerCase().split("\n");
 	//console.log(table)
@@ -162,20 +166,64 @@ $(function () {
 	});
 });
 
-$(".calculatorInput").on("input", function(){
+$(".calculatorInput").on("input", function () {
 	var convertedDecimal;
- 	// Check what was inputted and convert to decimal accordingly
-	if(this.id == "hex")
+	// Check what was inputted and convert to decimal accordingly
+	if (this.id == "hex")
 		convertedDecimal = parseInt(this.value, 16);
-	else if(this.id == "octal")
+	else if (this.id == "binary")
 		convertedDecimal = parseInt(this.value, 2);
 	else
 		convertedDecimal = parseInt(this.value, 10);
- 	// Errortrap NaN input
-	if(isNaN(convertedDecimal))
+	// Errortrap NaN input
+	if (isNaN(convertedDecimal))
 		convertedDecimal = 0;
- 		//Display values
+	//Display values
 	$("#hex").val(convertedDecimal.toString(16));
-	$("#octal").val(convertedDecimal.toString(2));
+	$("#binary").val(convertedDecimal.toString(2));
 	$("#decimal").val(convertedDecimal);
+});
+
+$("#open_folder").click(function () {
+	openFolder();
+});
+
+function openFolder() {
+	console.log('open project clicked');
+	projectDirectory = dialog.showOpenDialog({ properties: ['openFile', 'openDirectory', 'multiSelections'] });
+	console.log(projectDirectory);
+	createProjectTree(projectDirectory);
+}
+
+function createProjectTree(path) {
+	let tree = dirTree(path[0]);
+	console.log(tree);
+
+	$("#project_explorer").html('<div id="parentFolder" class="folder"><div class="folder-row rowItem"><i class="material-icons">folder</i>' + tree.name + '</div></div>');
+	$("#parentFolder").append(addChildren(tree) + "</div>");
+}
+
+
+function addChildren(parent) {
+	var returnStatement = "";
+
+	if (!parent.hasOwnProperty('children'))
+		return parent.name;
+
+	for (var x = 0; x < parent.children.length; x++) {
+		if (parent.children[x].hasOwnProperty('children'))
+			returnStatement += '<div class="folder"><div class="folder-row rowItem"><i class="material-icons">folder</i>' + parent.children[x].name + "</div>" + addChildren(parent.children[x]) + '</div>';
+		else
+			returnStatement += '<div class="rowItem"><i class="material-icons">description</i>' + parent.children[x].name + '</div>';
+	}
+	return returnStatement;
+}
+
+$(document).on('click', '.folder-row', function () {
+	$(this).parent().toggleClass('active');
+
+	if ($(this).parent().hasClass('active'))
+		$(this).find(".material-icons").html("folder_open");
+	else
+		$(this).find(".material-icons").html("folder");
 });

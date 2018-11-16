@@ -1,7 +1,8 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow, Menu, dialog } = require('electron');
 const path = require('path');
 const url = require('url');
 const os = require('os');
+let $ = jQuery = require('jquery');
 
 let win;
 
@@ -36,7 +37,7 @@ function createWindow() {
 								console.log('new type 1');
 							}
 						},
-						{
+						({
 							label: '22', click() {
 								console.log('new type 2');
 							}
@@ -45,9 +46,18 @@ function createWindow() {
 				},
 				{ type: 'separator' },
 				{
-					label: 'Open',
+					label: 'Open File',
 					click() {
-						console.log('open clicked');
+						console.log('open file clicked');
+						console.log(dialog.showOpenDialog({ properties: ['openFile', 'openFile', 'multiSelections'] }));
+					}
+				},
+				{
+					label: 'Open Project',
+					click() {
+						console.log('open project clicked');
+						projectDirectory = dialog.showOpenDialog({ properties: ['openFile', 'openDirectory', 'multiSelections'] });
+						console.log(projectDirectory);
 					}
 				},
 				{
@@ -195,7 +205,7 @@ function createWindow() {
 	Menu.setApplicationMenu(menu);
 }
 
-function openSettings(){
+function openSettings() {
 	pref = new BrowserWindow({ width: 800, height: 600 });
 
 	pref.loadURL(url.format({
