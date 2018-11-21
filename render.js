@@ -129,11 +129,12 @@ function run() {
 
 function loadColours() {
 	$(":root").css({
-		"--seperator-bar-colour": settings.get('colours.accent'),
+		"--seperator-bar-colour": settings.get('colours.seperator'),
 		"--editor-colour": settings.get('colours.editor'),
 		"--file-tree": settings.get('colours.files'),
 		"--menu": settings.get('colours.menu'),
-		"--tabColour": settings.get('colours.tab')
+		"--tabColour": settings.get('colours.tab'),
+		"--accent-colour": settings.get('colours.accent'),
 	});
 }
 
@@ -214,7 +215,7 @@ function addChildren(parent) {
 		if (parent.children[x].hasOwnProperty('children'))
 			returnStatement += '<div class="folder"><div class="folder-row rowItem"><i class="material-icons">folder</i>' + parent.children[x].name + "</div>" + addChildren(parent.children[x]) + '</div>';
 		else
-			returnStatement += '<div class="rowItem"><i class="material-icons">description</i>' + parent.children[x].name + '</div>';
+			returnStatement += '<div id="' + parent.children[x].path + '" class="rowItem document"><i class="material-icons">description</i>' + parent.children[x].name + '</div>';
 	}
 	return returnStatement;
 }
@@ -227,3 +228,15 @@ $(document).on('click', '.folder-row', function () {
 	else
 		$(this).find(".material-icons").html("folder");
 });
+
+$(document).on('click', '.document', function () {
+	$('.document').removeClass('active');
+	$(this).addClass('active');
+	$.get(this.getAttribute('id'), function (data) {
+		area.setValue(data);
+	}, 'text');
+});
+
+$(document).ready(function () {
+	loadColours();
+})

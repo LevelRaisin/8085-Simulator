@@ -217,6 +217,11 @@ function openSettings() {
 	pref.on('closed', () => {
 		pref = null;
 	});
+
+	pref.setMenu(null); // Hide menu bar
+
+	pref.webContents.openDevTools(); // Open debugger
+
 }
 
 app.on('ready', createWindow);

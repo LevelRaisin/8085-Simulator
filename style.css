@@ -7,6 +7,7 @@
     --menu: lightcyan;
     */
 
+    --accent-colour: #deaf03;
     --seperator-bar-colour: #535353;
     --editor-colour: #b9b9b9;
     --file-tree: #272727;
@@ -201,7 +202,15 @@ html, body {
 }
 
 .ui-tabs-active{
-    background:var(--activeTab)!important;
+    background:var(--accent-colour)!important;
+}
+
+.ui-tabs-active *:hover{
+    cursor:pointer;
+}
+
+.ui-tabs-active *:focus{
+    outline:0!important;
 }
 
 .ui-tabs .ui-tabs-panel{
@@ -329,6 +338,10 @@ tr .active {
     color:white;
     line-height:30px;
     cursor: pointer;
+}
+
+.rowItem.active{
+    background-color: rgba(255,255,255,.2);
 }
 
 .rowItem:hover{

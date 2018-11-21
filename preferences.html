@@ -16,53 +16,93 @@
 		font-family: 'Open Sans', sans-serif;
 	}		
 
+	body{
+		background-color: var(--navBackground);
+	}
+
 	label{
-		float: left; width: 10em; margin-right: 1em;
+		float: left;
+		width: 10em; 
+		margin-right: 1em;
+		line-height:40px;
+	}
+
+	.colorPicker{
+		border:none;
+		height:40px;
+		width:40px;
+		background:none;
+	}
+
+	.colorPicker:hover{
+		cursor: pointer;
+	}
+
+	.settingsContainer{
+		margin:10px;
+		padding:20px;
+		box-shadow:0px 0px 10px rgba(0,0,0,.2);
+		background-color:#ececec;
+	}
+
+	button{
+		margin-right:10px;
+		margin-top:20px;
+		border:none;
+		padding:10px;
+		background-color: var(--accent-colour);
+		box-shadow:0px 0px 10px rgba(0,0,0,.1);
+		transition-duration:.2s;
+	}
+
+	button:hover{
+		transform:scale(1.03, 1.03);
+		box-shadow:0px 0px 15px rgba(0,0,0,.1);
 	}
 	</style>
 
-	<div style="cursor: move; padding-bottom:45px; z-index:5; box-shadow:0px 0px 10px rgba(0,0,0,.2); -webkit-app-region: drag; height:20px; width:100%; background-color: #424242;"></div>
-	<div style="z-index:10; -webkit-app-region: no-drag;" class="roundButton" id="revealButton"><i class="material-icons">search</i>Reveal</div>
-	<div style="z-index:10; -webkit-app-region: no-drag;" class="roundButton" id="closeButton"><i class="material-icons">highlight_off</i>Close</div>
+	<div class="settingsContainer">
+		<h2>Display Preferences</h2>
+		<hr />
+		<div>
+			<input class="colorPicker" name="accentColour" type="color" id="accentColour" value="#ff0000">
+			<label for="accentColour">Accent Colour:</label>
+		</div>
+		<div>
+			<input class="colorPicker" type="color" id="editorColour" value="#ff0000">
+			<label for="editorColour">Editor Colour:</label>
+		</div>
+		<div>
+			<input class="colorPicker" type="color" id="filesColour" value="#ff0000">
+			<label for="filesColour">File Tree Colour:</label>
+		</div>
+		<div>
+			<input class="colorPicker" type="color" id="menuColour" value="#ff0000">
+			<label for="menuColour">Menu Bar Colour:</label>
+		</div>
+		<div>
+			<input class="colorPicker" type="color" id="seperatorColour" value="#ff0000">
+			<label for="seperatorColour">Seperator bar Colour:</label>
+		</div>
+		<br />
+		<hr />
+		<button id="default">Default Colours</button>
+		<button id="save">Save Preferences</button>
 	</div>
-	<h2>Display Preferences</h2>
-	<div>
-		<input name="accentColour" type="color" id="accentColour" value="#ff0000">
-		<label for="accentColour">Accent Colour:</label>
-	</div>
-	<div>
-		<input type="color" id="editorColour" value="#ff0000">
-		<label for="accentColour">Editor Colour:</label>
-	</div>
-	<div>
-		<input type="color" id="filesColour" value="#ff0000">
-		<label for="accentColour">File Tree Colour:</label>
-	</div>
-	<div>
-	<input type="color" id="menuColour" value="#ff0000">
-	<label for="accentColour">Menu Bar Colour:</label>
-	</div>
-	<div>
-	<input type="color" id="tabColour" value="#ff0000">
-	<label for="accentColour">Tab Colour:</label>
-	</div>
-
-	<button id="default">Default Colours</button>
-	<button id="save">Save Preferences</button>
 
 	<script src="render.js"></script>
 
 	<script>
-
 		$("#default").click(function () {
 			settings.set('colours', {
-				accent: "#535353",
+				accent: "#deaf03",
 				editor: "#b9b9b9",
 				files: "#272727",
 				menu: "#6d6d6d",
-				tab: "#313131"
+				seperator: "#535353"
 			});
 			alert("Default colours set.");
+			displayColours();
 		});
 
 		$("#save").click(function () {
@@ -71,11 +111,27 @@
 				editor: $("#editorColour").val(),
 				files: $("#filesColour").val(),
 				menu: $("#menuColour").val(),
-				tab: $("#tabColour").val()
+				seperator: $("#seperatorColour").val()
 			});
 			alert('Custom colours saved.');
 			loadColours();
+			displayColours();
 		});
+
+		$(document).ready(function(){
+			displayColours();
+		});
+
+		function displayColours(){
+			loadColours();
+
+			// Set values in page
+			$("#accentColour").val(settings.get('colours.accent'));
+			$("#editorColour").val(settings.get('colours.editor'));
+			$("#filesColour").val(settings.get('colours.files'));
+			$("#menuColour").val(settings.get('colours.menu'));
+			$("#seperatorColour").val(settings.get('colours.seperator'));
+		}
 	</script>
 </body>
 
