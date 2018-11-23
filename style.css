@@ -42,6 +42,26 @@ html, body {
     background-color: var(--menu);
 }
 
+#menu{
+        /* Stop from highlighting */
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+}
+
+#menu *{
+        /* Stop from highlighting */
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+}
+
 .icon_sep {
     vertical-align: middle;
     font-size: 20px;
@@ -316,9 +336,21 @@ tr .active {
 .calculatorInput{
   text-transform:uppercase;
   padding:5px;
-  border:none;
-  border-radius:2px;
-  width: calc(32% - 10px);
+  padding-left:15px;
+  padding-right:15px;
+  border-style:solid;
+  border-color:white;
+  border-width:2px;
+  border-radius:100px;
+  color:white;
+  background-color:transparent;
+  margin-left:10px;
+  margin-right:10px;
+  width: calc(32% - 54px);
+}
+
+.calculatorInput:focus{
+    outline:0;
 }
 
 #labelContainer{
@@ -326,9 +358,10 @@ tr .active {
 }
 
 #labelContainer label{
-    width:32%;
+    width: 33.3%;
     display:inline-block;
-    text-align:left;
+    float:left;
+    text-align:center;
 }
 
 /* File Tree */
