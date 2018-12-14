@@ -102,12 +102,6 @@ function run() {
 	//$("#editor").css('display', 'none');
 	//$("#tables").css('display', 'block');
 
-	memTable = new Table("#mem-table", [["Memory Locations", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]]);
-	binTable = new Table("#bin-table", [["Name", "Binary Representation", "Hexadecimal"], ["A", "0000 0000", "00"], ["B", "0000 0000", "00"], ["C", "0000 0000", "00"], ["D", "0000 0000", "00"], ["E", "0000 0000", "00"], ["H", "0000 0000", "00"], ["L", "0000 0000", "00"], ["M", "0000 0000", "00"], ["PC", "0000 0000 0000 0000", "00 00"], ["SP", "0000 0000 0000 0000", "00 00"], ["Flags", "0000 0000", "00"]]);
-
-	memTable.createTable();
-	binTable.createTable(true);
-
 	//Change current tab to memory table
 	$("#memTab a").click();
 
@@ -239,4 +233,11 @@ $(document).on('click', '.document', function () {
 
 $(document).ready(function () {
 	loadColours();
+
+	memTable = new Table("#mem-table", [["Memory Locations", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]]);
+	binTable = new Table("#bin-table", [["Name", "Binary Representation", "Hexadecimal"], ["A", "0000 0000", "00"], ["B", "0000 0000", "00"], ["C", "0000 0000", "00"], ["D", "0000 0000", "00"], ["E", "0000 0000", "00"], ["H", "0000 0000", "00"], ["L", "0000 0000", "00"], ["M", "0000 0000", "00"], ["PC", "0000 0000 0000 0000", "00 00"], ["SP", "0000 0000 0000 0000", "00 00"], ["Flags", "0000 0000", "00"]]);
+
+
+	memTable.createTable();
+	binTable.createTable(true);
 })

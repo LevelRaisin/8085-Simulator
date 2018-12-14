@@ -7,7 +7,11 @@ let $ = jQuery = require('jquery');
 let win;
 
 function createWindow() {
-	win = new BrowserWindow({ width: 800, height: 600 });
+	win = new BrowserWindow({
+		width: 800,
+		height: 600,
+		icon: path.join(__dirname, 'resources/images/icon/64.png')
+	});
 
 	win.loadURL(url.format({
 		pathname: path.join(__dirname, 'index.html'),

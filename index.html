@@ -30,7 +30,8 @@
 	<!-- Page contents -->
 	<div id="container">
 		<div id="project_explorer">
-				
+				<h3 style="color:white;text-align:center;display: inline-block;width: 100%;margin-top: 50px;">No projects are open.</h3>
+				<div class="roundButton" style="width: 150px;position: relative; float:left; margin-left:calc((100% - 165px)/2);" onclick="openFolder()" id="openPrompt"><i class="material-icons">folder_open</i>Open Project</div>
 		</div>
 		<div id="h_sep"></div>
 		<div id="tabs">
@@ -51,8 +52,8 @@
 					<div id="tableContainer">
 						<table id="mem-table"></table>
 					</div>
-					<div class="roundButton" id="revealButton" style="right:135px;"><i class="material-icons">search</i>Reveal</div>
-					<div class="roundButton" id="popoutButton"><i class="material-icons">picture_in_picture</i>Popout</div>
+					<div class="roundButton" id="revealButton"><i class="material-icons">search</i>Reveal</div>
+					<!--<div class="roundButton" id="popoutButton"><i class="material-icons">picture_in_picture</i>Popout</div>-->
 				</div>
 			</div>
 
@@ -62,8 +63,8 @@
 					<div id="tableContainer">
 						<table id="bin-table"></table>
 					</div>
-					<div class="roundButton" id="revealButton" style="right:135px;"><i class="material-icons">search</i>Reveal</div>
-					<div class="roundButton" id="popoutButton"><i class="material-icons">picture_in_picture</i>Popout</div>
+					<div class="roundButton" id="revealButton"><i class="material-icons">search</i>Reveal</div>
+					<!--<div class="roundButton" id="popoutButton"><i class="material-icons">picture_in_picture</i>Popout</div>-->
 				</div>
 			</div>
 			<!-- Hex/Dec/Octal calculator -->
@@ -73,9 +74,9 @@
 					<label for="binary">Binary</label>
 					<label for="hex">Hexadecimal</label>
 				</div>
-				<input class="calculatorInput" id="decimal" type="text">
-				<input class="calculatorInput" id="binary" type="text">
-				<input class="calculatorInput" id="hex" type="text">
+				<input maxlength="8" class="calculatorInput" id="decimal" type="text">
+				<input maxlength="8" class="calculatorInput" id="binary" type="text">
+				<input maxlength="8" class="calculatorInput" id="hex" type="text">
 			</div>
 		</div>
 	</div>

@@ -18,6 +18,10 @@
     --activeTab: #d18f00;
 }
 
+/* Scrollbar */
+::-webkit-scrollbar-button{ display: none; height: 13px; border-radius: 0px; background-color: #AAA; } ::-webkit-scrollbar-button:hover{ background-color: rgb(97, 97, 97); } ::-webkit-scrollbar-thumb{ background-color: rgb(150, 150, 150); border-radius: 20px; } ::-webkit-scrollbar-thumb:hover{ background-color: rgb(109, 109, 109); box-shadow: 0px 0px 10px rgba(0,0,0,.1); } ::-webkit-scrollbar-track{ background-color: transparent; } ::-webkit-scrollbar-track:hover{ background-color: transparent; } ::-webkit-scrollbar{ width: 13px; }
+
+
 #container {
     font-family: 'Open Sans', sans-serif;
     width: 100%;
@@ -141,7 +145,7 @@ html, body {
     cursor: pointer;
 
     padding-left: 12px;
-    padding-right: 12px;
+    padding-right: 22px;
     border-radius: 40px;
 
     width: 90px;
@@ -216,9 +220,38 @@ html, body {
     margin: 0px;
 }
 
+.ui-tabs-nav{
+    height:35px;
+}
+
+.ui-tabs .ui-tabs-nav{
+    padding:0px!important;
+}
+
 .ui-tabs-tab{
+    cursor:grab!important;
     background: var(--tabColour)!important;
     border:0px!important;
+    height:35px;
+    line-height:35px;
+    margin-right:1px!important;
+    border-radius:0px!important;
+}
+
+.ui-tabs-tab a{
+    cursor:grab!important;
+    font-size:15px!important;
+    padding:0px!important;
+    padding-left:14px!important;
+    padding-right:14px!important;
+}
+
+.ui-tabs-tab *:active{
+    outline:0!important;
+}
+
+.ui-tabs-tab *:hover{
+    filter: brightness(150%);
 }
 
 .ui-tabs-active{
@@ -328,6 +361,7 @@ tr .active {
     height:50%;
     width:100%;
     padding:2px;
+    padding-top:15px;
     line-height:200%;
     text-align:center;
     background-color:var(--file-tree);
